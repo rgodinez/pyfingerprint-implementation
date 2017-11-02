@@ -80,7 +80,9 @@ try:
 		timesheetWriter = csv.writer(timesheetFile, delimiter=' ')
 		
 		clockInTime = time.strftime('%m-%d-%Y %H:%M:%S')
-		timesheetWriter.writerow(clockInTime + ' - ' + aliasFound)
+		rowEntry = clockInTime + ' - ' + aliasFound
+		
+		timesheetWriter.writerow(rowEntry)
 	
 
 except Exception as e:
