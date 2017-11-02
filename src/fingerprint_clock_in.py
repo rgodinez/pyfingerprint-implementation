@@ -72,7 +72,7 @@ try:
 					break
 			
 			if aliasFound:
-			break
+				break
 	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'wb') as timesheetFile:
