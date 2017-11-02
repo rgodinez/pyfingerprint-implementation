@@ -77,7 +77,7 @@ try:
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'wb') as timesheetFile:
 		print('Writing to timesheet...')
-		timesheetWriter = csv.writer(timesheetFile, delimiter='')
+		timesheetWriter = csv.writer(timesheetFile, delimiter=' ')
 		
 		clockInTime = time.strftime('%m-%d-%Y %H:%M:%S')
 		timesheetWriter.writerow(clockInTime + ' - ' + aliasFound)
