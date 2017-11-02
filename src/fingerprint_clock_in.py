@@ -62,6 +62,7 @@ try:
 	aliasFound = ''
 	
 	with open('testRoster.csv', 'rb') as rosterFile:
+		print('Reading roster...')
 		rosterReader = csv.reader(rosterFile)
 		
 		aliasFound = [alias for alias in rosterReader if hashedCharacteristics in alias][0]
@@ -69,6 +70,7 @@ try:
 	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'wb') as timesheetFile:
+		print('Writing to timesheet...')
 		timesheetWriter = csv.writer(timesheetFile)
 		
 		clockInTime = time.strftime('%m-%d-%Y %H:%M:%S')
