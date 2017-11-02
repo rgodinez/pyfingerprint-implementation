@@ -4,6 +4,7 @@
 ## imports
 import csv
 import time
+import hashlib
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 ## Searches for a finger and alias associated with it
