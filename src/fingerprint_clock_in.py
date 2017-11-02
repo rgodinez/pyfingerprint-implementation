@@ -68,7 +68,7 @@ try:
 		for row in rosterReader:
 			for field in row:
 				if ( field == hashedCharacteristics):
-					aliasFound = row[0]
+					aliasFound = ''.join(row[0])
 					break
 			
 			if aliasFound:
