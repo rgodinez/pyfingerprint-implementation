@@ -72,10 +72,10 @@ try:
 				aliasFound.append(tempAlias)
 				break
 	
-	aliasFound = aliasFound[0]
+	aliasFound = aliasFound[0].split(',')[0]
 	
 	## Store clock-in time for alias
-	with open('timesheet.csv', 'wb') as timesheetFile:
+	with open('timesheet.csv', 'w') as timesheetFile:
 		print('Writing to timesheet...')
 		timesheetWriter = csv.writer(timesheetFile)
 		
