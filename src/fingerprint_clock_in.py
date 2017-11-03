@@ -66,13 +66,10 @@ try:
 		rosterReader = csv.reader(rosterFile, delimiter=',')
 		
 		for row in rosterReader:
-			aliasFound.append(''.join(row[0]))
+			tempAlias = ''.join(row)
 			
-			for field in row:
-				if ( field != hashedCharacteristics):
-					aliasFound.pop()
-			
-			if aliasFound:
+			if hashedCharacteristics in tempAlias:
+				aliasFound.append(tempAlias)
 				break
 	
 	aliasFound = aliasFound[0]
