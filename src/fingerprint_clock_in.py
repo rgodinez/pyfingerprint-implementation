@@ -66,15 +66,16 @@ try:
 		rosterReader = csv.reader(rosterFile, delimiter=',')
 		
 		for row in rosterReader:
+			aliasFound.append(''.join(row[0]))
+			
 			for field in row:
-				if ( field == hashedCharacteristics):
-					aliasFound.append(''.join(row[0]))
-					break
+				if ( field != hashedCharacteristics):
+					aliasFound.pop()
 			
 			if aliasFound:
 				break
 	
-	print(str(aliasFound))
+	aliasFound = aliasFound[0]
 	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'wb') as timesheetFile:
