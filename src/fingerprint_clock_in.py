@@ -73,6 +73,7 @@ try:
 				break
 	
 	aliasFound = aliasFound[0].split(',')[0]
+	print(aliasFound)
 	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'w') as timesheetFile:
