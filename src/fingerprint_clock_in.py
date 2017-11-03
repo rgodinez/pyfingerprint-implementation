@@ -61,7 +61,7 @@ try:
 	## Check hashes stored on system and find alias
 	aliasFound = []
 	
-	with open('testRoster.csv', 'rb') as rosterFile:
+	with open('testRoster.csv', 'a') as rosterFile:
 		print('Reading roster...')
 		rosterReader = csv.reader(rosterFile, delimiter=',')
 		
@@ -73,7 +73,6 @@ try:
 				break
 	
 	aliasFound = aliasFound[0].split(' ')[0]
-	print(aliasFound)
 	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'w') as timesheetFile:
