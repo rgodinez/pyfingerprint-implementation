@@ -59,7 +59,7 @@ try:
 	hashedCharacteristics = hashlib.sha256(characteristics).hexdigest()
 	
 	## Check hashes stored on system and find alias
-	aliasFound = ''
+	aliasFound = []
 	
 	with open('testRoster.csv', 'rb') as rosterFile:
 		print('Reading roster...')
@@ -68,19 +68,21 @@ try:
 		for row in rosterReader:
 			for field in row:
 				if ( field == hashedCharacteristics):
-					aliasFound = ''.join(row[0])
+					aliasFound.append(''.join(row[0]))
 					break
 			
 			if aliasFound:
 				break
 	
+	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'wb') as timesheetFile:
 		print('Writing to timesheet...')
-		timesheetWriter = csv.writer(timesheetFile, delimiter='/')
+		timesheetWriter = csv.writer(timesheetFile)
 		
 		clockInTime = time.strftime('%m-%d-%Y %H:%M:%S')
 		rowEntry = clockInTime + ' - ' + aliasFound
+		rowEntry = ''.join(rowEntry)
 		
 		timesheetWriter.writerow(rowEntry)
 	
