@@ -50,7 +50,7 @@ def enroll_entry(f):
 	print('Finger enrolled successfully!')
 	
 	## Downloads characteristics of template in charbuffer 1
-	characteristics = str(f.downloadCharacteristics(0x01).encode('utf-8')
+	characteristics = str(f.downloadCharacteristics(0x01).encode('utf-8'))
 	
 	## Hashes characteristics
 	hashedCharacteristics = hashlib.sha256(characteristics).hexdigest()
@@ -78,7 +78,7 @@ if( f.getTemplateCount() + 3 > f.getStorageCapacity()):
 	exit(1)
 
 entryName = input('Enter new entry name: ')
-entryName = str(entryName)
+entryName = str(entryName) + ', '
 
 print('Starting scans for ' + entryName)
 
@@ -90,8 +90,12 @@ try:
 	characteristics.append(enroll_entry(f))
 	characteristics.append(enroll_entry(f))
 	
-	
-	
+	with open('testRoster.csv', 'a') as rosterFile:
+		print('Adding to roster...')
+		rosterWriter = csv.writer(rosterFile)
+		
+		rosterEntry = entryName + ', '.join(characteristics)
+		rosterWriter.writeRow(rosterEntry)
 	
 
 except Exception as e:
