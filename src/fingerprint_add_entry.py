@@ -92,7 +92,7 @@ try:
 		print('Adding to roster...')
 		rosterWriter = csv.writer(rosterFile)
 		
-		rosterEntry = [entryName + ', '.join(characteristics)]
+		rosterEntry = entryName + ', '.join(characteristics)
 		rosterWriter.writerow(rosterEntry)
 	
 	print('Finger enrolled successfully!')
