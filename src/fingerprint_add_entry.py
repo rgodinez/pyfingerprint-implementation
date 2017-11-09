@@ -78,7 +78,7 @@ if( f.getTemplateCount() + 3 > f.getStorageCapacity()):
 	exit(1)
 
 entryName = raw_input('Enter new entry name: ')
-entryName = str(entryName)
+entryName = str(entryName) + ','
 
 print('Starting scans for ' + entryName)
 
