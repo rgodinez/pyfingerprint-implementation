@@ -78,21 +78,19 @@ if( f.getTemplateCount() + 3 > f.getStorageCapacity()):
 	exit(1)
 
 entryName = raw_input('Enter new entry name: ')
-entryName = str(entryName) + ','
+entryName = str(entryName)
 
 print('Starting scans for ' + entryName)
 
-characteristics = []
-
 ## Tries to enroll new finger
 try:
-	characteristics.append(enroll_entry(f))
+	characteristics = enroll_entry(f)
 	
 	with open('testRoster.csv', 'a') as rosterFile:
 		print('Adding to roster...')
 		rosterWriter = csv.writer(rosterFile)
 		
-		rosterEntry = entryName + ', '.join(characteristics)
+		rosterEntry = [entryName, characteristics]
 		rosterWriter.writerow(rosterEntry)
 	
 	print('Finger enrolled successfully!')
