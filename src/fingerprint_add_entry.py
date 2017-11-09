@@ -50,7 +50,7 @@ def enroll_entry(f):
 	print('Finger enrolled successfully!')
 	
 	## Downloads characteristics of template in charbuffer 1
-	characteristics = str(f.downloadCharacteristics(0x01).encode('utf-8'))
+	characteristics = str(f.downloadCharacteristics(0x01)).encode('utf-8')
 	
 	## Hashes characteristics
 	hashedCharacteristics = hashlib.sha256(characteristics).hexdigest()
