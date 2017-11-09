@@ -78,7 +78,7 @@ if( f.getTemplateCount() + 3 > f.getStorageCapacity()):
 	exit(1)
 
 entryName = raw_input('Enter new entry name: ')
-entryName = str(entryName) + ', '
+entryName = str(entryName)
 
 print('Starting scans for ' + entryName)
 
@@ -92,7 +92,7 @@ try:
 		print('Adding to roster...')
 		rosterWriter = csv.writer(rosterFile)
 		
-		rosterEntry = entryName + ', '.join(characteristics)
+		rosterEntry = [entryName + ', '.join(characteristics)]
 		rosterWriter.writerow(rosterEntry)
 	
 	print('Finger enrolled successfully!')
