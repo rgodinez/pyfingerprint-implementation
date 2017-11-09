@@ -32,7 +32,7 @@ def enroll_entry(f):
 	print('Waiting for same finger again...')
 	
 	## Waiting for confirmation finger read
-	while(f.readImage()):
+	while(f.readImage() == False):
 		pass
 	
 	## Converts read image to characteristics and stores to charbuffer 2
