@@ -77,7 +77,7 @@ if( f.getTemplateCount() + 3 > f.getStorageCapacity()):
 	print('Scanner memory full! Cannot add entries.')
 	exit(1)
 
-entryName = input('Enter new entry name: ')
+entryName = raw_input('Enter new entry name: ')
 entryName = str(entryName) + ', '
 
 print('Starting scans for ' + entryName)
