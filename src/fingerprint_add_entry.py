@@ -87,8 +87,6 @@ characteristics = []
 ## Tries to enroll new finger
 try:
 	characteristics.append(enroll_entry(f))
-	characteristics.append(enroll_entry(f))
-	characteristics.append(enroll_entry(f))
 	
 	with open('testRoster.csv', 'a') as rosterFile:
 		print('Adding to roster...')
