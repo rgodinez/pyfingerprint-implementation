@@ -93,7 +93,7 @@ try:
 		rosterWriter = csv.writer(rosterFile)
 		
 		rosterEntry = entryName + ', '.join(characteristics)
-		rosterWriter.writeRow(rosterEntry)
+		rosterWriter.writerow(rosterEntry)
 	
 	print('Finger enrolled successfully!')
 	
