@@ -4,7 +4,6 @@
 ## imports
 import csv
 import time
-import hashlib
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 ## Enrolls new finger and returns hashed characteristics
@@ -27,7 +26,7 @@ def enroll_entry(f):
 		exit(0)
 	
 	print('Remove finger...')
-	time.sleep(2)
+	time.sleep(3)
 	
 	print('Confirming finger characteristics.')
 	print('Waiting for same finger again...')
@@ -49,13 +48,7 @@ def enroll_entry(f):
 	## Saves template at empty position number
 	f.storeTemplate()
 	
-	## Downloads characteristics of template in charbuffer 1
-	characteristics = str(f.downloadCharacteristics(0x01)).encode('utf-8')
-	
-	## Hashes characteristics
-	hashedCharacteristics = hashlib.sha256(characteristics).hexdigest()
-	
-	return hashedCharacteristics
+	return positionNumber
 
 ## Tries to initialize the sensor
 try:
@@ -73,7 +66,7 @@ except Exception as e:
 ## Gets sensor storage information
 print('Currently used templates: ' + str(f.getTemplateCount()) + '/' + str(f.getStorageCapacity()))
 
-if( f.getTemplateCount() + 3 > f.getStorageCapacity()):
+if( f.getTemplateCount() + 1 > f.getStorageCapacity()):
 	print('Scanner memory full! Cannot add entries.')
 	exit(1)
 
@@ -84,13 +77,13 @@ print('Starting scans for ' + entryName)
 
 ## Tries to enroll new finger
 try:
-	characteristics = enroll_entry(f)
+	positionNumber = enroll_entry(f)
 	
 	with open('testRoster.csv', 'a') as rosterFile:
 		print('Adding to roster...')
 		rosterWriter = csv.writer(rosterFile)
 		
-		rosterEntry = [entryName, characteristics]
+		rosterEntry = [entryName, positionNumber]
 		rosterWriter.writerow(rosterEntry)
 	
 	print('Finger enrolled successfully!')

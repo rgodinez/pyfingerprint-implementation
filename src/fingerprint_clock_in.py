@@ -4,7 +4,6 @@
 ## imports
 import csv
 import time
-import hashlib
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 ## Searches for a finger and alias associated with it
@@ -52,12 +51,6 @@ try:
 	## Loads template into charbuffer 1
 	f.loadTemplate(positionNumber, 0x01)
 	
-	## Downloads characteristics of template in charbuffer 1
-	characteristics = str(f.downloadCharacteristics(0x01)).encode('utf-8')
-	
-	## Hashes characteristics
-	hashedCharacteristics = hashlib.sha256(characteristics).hexdigest()
-	
 	## Check hashes stored on system and find alias
 	aliasFound = []
 	
@@ -68,11 +61,11 @@ try:
 		for row in rosterReader:
 			tempAlias = ''.join(row)
 			
-			if hashedCharacteristics in tempAlias:
+			if positionNumber in tempAlias:
 				aliasFound.append(tempAlias)
 				break
 	
-	aliasFound = aliasFound[0].split(' ')[0]
+	aliasFound = aliasFound[0].split(',')[0]
 	
 	## Store clock-in time for alias
 	with open('timesheet.csv', 'a') as timesheetFile:
